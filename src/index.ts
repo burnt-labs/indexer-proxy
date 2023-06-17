@@ -5,6 +5,7 @@ type Env = {
 const INDEXER_HOST_MAP = {
   'juno-1': 'juno-mainnet.indexer.zone',
   'uni-6': 'juno-testnet.indexer.zone',
+  'osmosis-1': 'osmosis-mainnet.indexer.zone',
 }
 
 //! Entrypoint.
