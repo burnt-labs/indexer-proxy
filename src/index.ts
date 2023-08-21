@@ -7,6 +7,8 @@ const INDEXER_HOST_MAP = {
   'uni-6': 'juno-testnet.indexer.zone',
   'osmosis-1': 'osmosis-mainnet.indexer.zone',
   'osmo-test-5': 'osmosis-testnet.indexer.zone',
+  'stargaze-1': 'stargaze-mainnet.indexer.zone',
+  'elgafar-1': 'stargaze-testnet.indexer.zone',
 }
 
 //! Entrypoint.
