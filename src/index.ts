@@ -43,13 +43,54 @@ const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
 //! Entrypoint.
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const method = request.method.toUpperCase()
     const url = new URL(request.url)
 
-    // If batch, parallelize requests.
-    if (
+    // Respond to OPTIONS requests.
+    if (method === 'OPTIONS') {
+      const origin = request.headers.get('Origin') || ''
+      const corsRequestHeaders = request.headers.get(
+        'Access-Control-Request-Headers'
+      )
+
+      if (
+        origin &&
+        request.headers.get('Access-Control-Request-Method') !== null &&
+        corsRequestHeaders
+      ) {
+        // Handle CORS preflight requests.
+        return new Response(null, {
+          headers: {
+            'Access-Control-Allow-Origin': origin,
+            'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
+            'Access-Control-Max-Age': '86400',
+            'Access-Control-Allow-Headers': corsRequestHeaders,
+          },
+        })
+      } else {
+        // Handle standard OPTIONS request.
+        return new Response(null, {
+          headers: {
+            Allow: 'GET, HEAD, POST, OPTIONS',
+          },
+        })
+      }
+    } else if (method === 'GET') {
+      // Proxy one request.
+      const response = await queryIndexer(env, new URL(request.url))
+      return new Response(response.body, {
+        status: response.status,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
+    } else if (
+      method === 'POST' &&
       url.pathname.split('/')[1] === 'batch' &&
       url.pathname.split('/').length <= 3
     ) {
+      // Batch requests.
       const paths = await request.json()
       if (!Array.isArray(paths)) {
         return new Response('Invalid request', { status: 400 })
@@ -59,7 +100,9 @@ export default {
         const responses = await Promise.all(
           paths.map((path) => {
             const url = new URL(request.url)
-            url.pathname = path
+            url.pathname = path.split('?')[0]
+            url.search = path.split('?')[1]
+            console.log(url.toString())
             return queryIndexer(env, url)
           })
         )
@@ -87,14 +130,6 @@ export default {
       }
     }
 
-    // Otherwise, just send one request.
-    const response = await queryIndexer(env, new URL(request.url))
-    return new Response(response.body, {
-      status: response.status,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    })
+    return new Response('Not found', { status: 404 })
   },
 }
