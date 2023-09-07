@@ -9,6 +9,7 @@ const INDEXER_HOST_MAP = {
   'osmo-test-5': 'osmosis-testnet.indexer.zone',
   'stargaze-1': 'stargaze-mainnet.indexer.zone',
   'elgafar-1': 'stargaze-testnet.indexer.zone',
+  'neutron-1': 'neutron-mainnet.indexer.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
