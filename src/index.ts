@@ -99,12 +99,21 @@ export default {
 
       try {
         const responses = await Promise.all(
-          paths.map((path) => {
+          paths.map(async (path) => {
             const url = new URL(request.url)
             url.pathname = path.split('?')[0]
             url.search = path.split('?')[1]
-            console.log(url.toString())
-            return queryIndexer(env, url)
+            try {
+              return await queryIndexer(env, url)
+            } catch (err) {
+              return {
+                status: 400,
+                body:
+                  err instanceof Error
+                    ? err.message
+                    : 'unknown error querying indexer',
+              }
+            }
           })
         )
 
