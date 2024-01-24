@@ -11,6 +11,7 @@ const INDEXER_HOST_MAP = {
   'elgafar-1': 'stargaze-testnet.indexer.zone',
   'neutron-1': 'neutron-mainnet.indexer.zone',
   'migaloo-1': 'migaloo-mainnet.indexer.zone',
+  'narwhal-2': 'migaloo-testnet.indexer.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
