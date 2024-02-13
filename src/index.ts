@@ -3,15 +3,15 @@ type Env = {
 }
 
 const INDEXER_HOST_MAP = {
-  'juno-1': 'juno-mainnet.indexer.zone',
-  'uni-6': 'juno-testnet.indexer.zone',
-  'osmosis-1': 'osmosis-mainnet.indexer.zone',
-  'osmo-test-5': 'osmosis-testnet.indexer.zone',
-  'stargaze-1': 'stargaze-mainnet.indexer.zone',
-  'elgafar-1': 'stargaze-testnet.indexer.zone',
-  'neutron-1': 'neutron-mainnet.indexer.zone',
-  'migaloo-1': 'migaloo-mainnet.indexer.zone',
-  'narwhal-2': 'migaloo-testnet.indexer.zone',
+  'juno-1': 'juno-mainnet.indexer.daodao.zone',
+  'uni-6': 'juno-testnet.indexer.daodao.zone',
+  'osmosis-1': 'osmosis-mainnet.indexer.daodao.zone',
+  'osmo-test-5': 'osmosis-testnet.indexer.daodao.zone',
+  'stargaze-1': 'stargaze-mainnet.indexer.daodao.zone',
+  'elgafar-1': 'stargaze-testnet.indexer.daodao.zone',
+  'neutron-1': 'neutron-mainnet.indexer.daodao.zone',
+  'migaloo-1': 'migaloo-mainnet.indexer.daodao.zone',
+  'narwhal-2': 'migaloo-testnet.indexer.daodao.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
