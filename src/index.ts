@@ -80,14 +80,29 @@ export default {
       }
     } else if (method === 'GET') {
       // Proxy one request.
-      const response = await queryIndexer(env, new URL(request.url))
-      return new Response(response.body, {
-        status: response.status,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
+      try {
+        const response = await queryIndexer(env, new URL(request.url))
+        return new Response(response.body, {
+          status: response.status,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        })
+      } catch (err) {
+        console.error(err)
+
+        if (err instanceof Response) {
+          return err
+        }
+
+        throw new Response(
+          `Unexpected server error: ${
+            err instanceof Error ? err.message : err
+          }`,
+          { status: 500 }
+        )
+      }
     } else if (
       method === 'POST' &&
       url.pathname.split('/')[1] === 'batch' &&
