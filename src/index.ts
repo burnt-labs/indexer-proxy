@@ -14,6 +14,7 @@ const INDEXER_HOST_MAP = {
   'narwhal-2': 'migaloo-testnet.indexer.daodao.zone',
   Oraichain: 'oraichain-mainnet.indexer.daodao.zone',
   'phoenix-1': 'terra-mainnet.indexer.daodao.zone',
+  'kaiyo-1': 'kujira-mainnet.indexer.daodao.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
