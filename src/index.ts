@@ -16,6 +16,7 @@ const INDEXER_HOST_MAP = {
   'phoenix-1': 'terra-mainnet.indexer.daodao.zone',
   'kaiyo-1': 'kujira-mainnet.indexer.daodao.zone',
   'harpoon-4': 'kujira-testnet.indexer.daodao.zone',
+  'columbus-5': 'terraClassic-mainnet.indexer.daodao.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
