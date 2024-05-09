@@ -10,6 +10,7 @@ const INDEXER_HOST_MAP = {
   'stargaze-1': 'stargaze-mainnet.indexer.daodao.zone',
   'elgafar-1': 'stargaze-testnet.indexer.daodao.zone',
   'neutron-1': 'neutron-mainnet.indexer.daodao.zone',
+  'pion-1': 'neutron-testnet.indexer.daodao.zone',
   'migaloo-1': 'migaloo-mainnet.indexer.daodao.zone',
   'narwhal-2': 'migaloo-testnet.indexer.daodao.zone',
   Oraichain: 'oraichain-mainnet.indexer.daodao.zone',
