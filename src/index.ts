@@ -20,6 +20,7 @@ const INDEXER_HOST_MAP = {
   'columbus-5': 'terraClassic-mainnet.indexer.daodao.zone',
   'bitsong-2b': 'bitsong-mainnet.indexer.daodao.zone',
   bobnet: 'bitsong-testnet.indexer.daodao.zone',
+  'omniflixhub-1': 'omniflix-mainnet.indexer.daodao.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
