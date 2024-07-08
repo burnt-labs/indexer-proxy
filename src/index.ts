@@ -21,6 +21,7 @@ const INDEXER_HOST_MAP = {
   'bitsong-2b': 'bitsong-mainnet.indexer.daodao.zone',
   bobnet: 'bitsong-testnet.indexer.daodao.zone',
   'omniflixhub-1': 'omniflix-mainnet.indexer.daodao.zone',
+  'flixnet-4': 'omniflix-testnet.indexer.daodao.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
