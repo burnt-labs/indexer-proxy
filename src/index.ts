@@ -24,6 +24,7 @@ const INDEXER_HOST_MAP = {
   'flixnet-4': 'omniflix-testnet.indexer.daodao.zone',
   provider: 'cosmosHubProvider-testnet.indexer.daodao.zone',
   'theta-testnet-001': 'cosmosHubTheta-testnet.indexer.daodao.zone',
+  'cosmoshub-4': 'cosmosHub-mainnet.indexer.daodao.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
