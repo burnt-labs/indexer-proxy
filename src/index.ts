@@ -53,6 +53,7 @@ const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
   return {
     status: response.status,
     body: await response.text(),
+    headers: response.headers,
   }
 }
 
@@ -95,10 +96,13 @@ export default {
       // Proxy one request.
       try {
         const response = await queryIndexer(env, new URL(request.url))
+        const contentType = response.headers.get('Content-Type')
         return new Response(response.body, {
           status: response.status,
           headers: {
-            'Content-Type': 'application/json',
+            ...(contentType && {
+              'Content-Type': contentType,
+            }),
             'Access-Control-Allow-Origin': '*',
           },
         })
