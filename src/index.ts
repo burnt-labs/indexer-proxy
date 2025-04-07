@@ -26,6 +26,7 @@ const INDEXER_HOST_MAP = {
   'theta-testnet-001': 'cosmosHubTheta-testnet.indexer.zone',
   'cosmoshub-4': 'cosmosHub-mainnet.indexer.zone',
   'bbn-test-5': 'babylon-testnet.indexer.zone',
+  'dev-1': 'thorChain-testnet.indexer.zone',
 }
 
 const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
