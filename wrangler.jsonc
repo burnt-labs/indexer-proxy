@@ -8,5 +8,11 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-04-04",
   "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "daodaoindexer.burnt.com",
+      "custom_domain": true
+    }
+  ],
   "env": {}
 }
