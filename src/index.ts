@@ -39,7 +39,7 @@ const queryIndexer = async ({ API_KEY }: Env, url: URL) => {
       ? INDEXER_HOST_MAP[chainId as keyof typeof INDEXER_HOST_MAP]
       : null
   if (host === null) {
-    throw new Response('Invalid chain ID', { status: 400 })
+    return new Response('Invalid chain ID', { status: 400 })
   }
 
   url.protocol = 'https'
@@ -117,11 +117,11 @@ export default {
           return err
         }
 
-        throw new Response(
+        return new Response(
           `Unexpected server error: ${
             err instanceof Error ? err.message : err
           }`,
-          { status: 500 }
+          { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
         )
       }
     } else if (
@@ -132,7 +132,7 @@ export default {
       // Batch requests.
       const paths = await request.json()
       if (!Array.isArray(paths)) {
-        return new Response('Invalid request', { status: 400 })
+        return new Response('Invalid request', { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } })
       }
 
       try {
@@ -169,15 +169,15 @@ export default {
           return err
         }
 
-        throw new Response(
+        return new Response(
           `Unexpected server error: ${
             err instanceof Error ? err.message : err
           }`,
-          { status: 500 }
+          { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
         )
       }
     }
 
-    return new Response('Not found', { status: 404 })
+    return new Response('Not found', { status: 404, headers: { 'Access-Control-Allow-Origin': '*' } })
   },
 }
